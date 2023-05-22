@@ -26,7 +26,13 @@ class _NewItemState extends State<NewItem> {
                   label: Text('Name'),
                 ),
                 validator: (value) {
-                  return 'Demo..';
+                  if (value == null ||
+                      value.isEmpty ||
+                      value.trim().length <= 1 ||
+                      value.trim().length > 15) {
+                    return 'Must be between 1 and 50 characters.';
+                  }
+                  return null;
                 },
               ),
               Row(
@@ -38,13 +44,24 @@ class _NewItemState extends State<NewItem> {
                         label: Text('Quantity'),
                       ),
                       initialValue: '1',
+                      validator: (value) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            int.tryParse(value) == null ||
+                            int.tryParse(value)! <= 0) {
+                          return 'Must be between 1 and 50 characters.';
+                        }
+                        return null;
+                      },
                     ),
                   ),
-                  const SizedBox(width: 8,),
+                  const SizedBox(
+                    width: 8,
+                  ),
                   Expanded(
                     child: DropdownButtonFormField(
                       items: [
-                        for(final category in categories.entries)
+                        for (final category in categories.entries)
                           DropdownMenuItem(
                             value: category.value,
                             child: Row(
@@ -54,14 +71,32 @@ class _NewItemState extends State<NewItem> {
                                   height: 16,
                                   color: category.value.color,
                                 ),
-                                const SizedBox(width: 6,),
+                                const SizedBox(
+                                  width: 6,
+                                ),
                                 Text(category.value.title),
                               ],
                             ),
                           ),
-                      ], 
+                      ],
                       onChanged: (value) {},
                     ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Reset'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('Add Item'),
                   ),
                 ],
               ),
