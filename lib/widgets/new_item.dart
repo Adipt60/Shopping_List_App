@@ -39,9 +39,7 @@ class _NewItemState extends State<NewItem> {
         ),
       );
 
-      print(response.body);
-      print(response.statusCode);
-
+      // ignore: use_build_context_synchronously
       if (!context.mounted) {
         return;
       }
