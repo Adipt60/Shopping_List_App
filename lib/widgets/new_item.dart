@@ -25,7 +25,7 @@ class _NewItemState extends State<NewItem> {
         'shoppinglistapp-3ca52-default-rtdb.firebaseio.com',
         'shopping_list.json',
       );
-      final response = await http.post(
+      await http.post(
         url,
         headers: {
           'Content-Type': 'application/json',
